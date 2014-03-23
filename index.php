@@ -187,7 +187,7 @@ $sminutes = $sleep_time % 60;
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
-
+<?php echo $ga_code; ?>
 </body>
 
 </html>
