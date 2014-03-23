@@ -1,12 +1,16 @@
 <?php
 include("config.php");
-$link = mysql_connect('localhost', $db_un, $db_pw);
+
+$link=mysqli_connect("localhost",$db_un,$db_pw,$db_db);
+
 if (!$link) {
- die('Could not connect: ' . mysql_error());
+ die('Could not connect: ' . mysqli_error());
 }
-$links = mysql_select_db($db_db, $link);
+
 $data = "SELECT * FROM fitbit WHERE id='1'";
-$query = mysql_fetch_assoc(mysql_query($data));
+$query=mysqli_fetch_assoc(mysqli_query($link,$data));
+
+//fitbit start
 $fitbit = json_decode($query["value"]);
 $sleep = json_decode($query["sleep"]);
 //echo $fitbit->summary->steps;
@@ -14,6 +18,7 @@ $steps = $fitbit->summary->steps;
 $sleep_time = $sleep->summary->totalMinutesAsleep;
 $shours = floor($sleep_time / 60);
 $sminutes = $sleep_time % 60;
+//fitbit end
 ?>
 <!DOCTYPE html>
 <html lang="en">
