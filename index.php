@@ -1,9 +1,10 @@
 <?php
-$link = mysql_connect('localhost', 'username', 'password');
+include("config.php");
+$link = mysql_connect('localhost', $db_un, $db_pw);
 if (!$link) {
  die('Could not connect: ' . mysql_error());
 }
-$links = mysql_select_db("database", $link);
+$links = mysql_select_db($db_db, $link);
 $data = "SELECT * FROM fitbit WHERE id='1'";
 $query = mysql_fetch_assoc(mysql_query($data));
 $fitbit = json_decode($query["value"]);
